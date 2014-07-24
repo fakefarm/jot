@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby -w
+
+class Jotter
+  
+  OPTIONS = %w( new read )
+  def initialize
+    puts 'Jot a note. Or, [S]earch'
+    new 
+  end
+
+  def new
+    print '> '
+    input = gets.chomp
+    if input =~ /search/ || input =~ /menu/
+      menu
+    elsif input == 'quit'
+      exit
+    else
+      create(input)
+    end
+  end
+
+  def create(input)
+    File.open('jots.txt', 'a+') do |jot|
+      jot.write "\n"
+      jot.write input
+    end
+    puts 'Saved. Jot another or [M]enu'
+    new
+  end
+
+  def menu
+    puts '[D]elete [E]dit [S]earch'
+    input = gets.chomp
+    send(input)   
+  end
+end
+
+Jotter.new
