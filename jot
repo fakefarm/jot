@@ -3,10 +3,13 @@
 require './string_util'
 class Jotter
   
-  OPTIONS = %w( new read )
   def initialize
-    puts 'Jot a note. Or, [S]earch'.cyan
+    puts 'Jot a note. Or, [S]earch'.gray
     new 
+  end
+
+  def index
+    File.open()
   end
 
   def new
@@ -22,7 +25,8 @@ class Jotter
   end
 
   def create(input)
-    File.open('jots.txt', 'a+') do |jot|
+    jots = File.join(Dir.home, 'Dropbox', 'jots')
+    File.open("#{jots}/#{Time.now.strftime("%F")}.markdown", 'a+') do |jot|
       jot.write "\n"
       jot.write input
     end

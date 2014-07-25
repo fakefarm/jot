@@ -20,3 +20,12 @@ This will allow you to type things as they come.
 - add a date flag
 - on quit, send user back to directory they came from
 - execute without need of ./
+- build rake tasks for reports
+- create markdown headers per month
+- create a jot title flag as an argument 'jot -friday'
+- index action lists file names to review for jotting?
+
+## report types
+- total jots
+- sorted by tag
+- single page view
