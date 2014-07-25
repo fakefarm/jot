@@ -1,15 +1,16 @@
 #!/usr/bin/env ruby -w
 
+require './string_util'
 class Jotter
   
   OPTIONS = %w( new read )
   def initialize
-    puts 'Jot a note. Or, [S]earch'
+    puts 'Jot a note. Or, [S]earch'.cyan
     new 
   end
 
   def new
-    print '> '
+    print '> '.red
     input = gets.chomp
     if input =~ /search/ || input =~ /menu/
       menu
