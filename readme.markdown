@@ -20,4 +20,3 @@ This will allow you to type things as they come.
 - add a date flag
 - on quit, send user back to directory they came from
 - execute without need of ./
-
