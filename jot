@@ -1,32 +1,67 @@
-#!/usr/bin/env ruby -w
+#!/usr/bin/env ruby 
 
 require './string_util'
 class Jotter
-  
+
   def initialize
-    puts 'Jot a note. Or, [S]earch'.gray
+    puts 'Jot a note...'.gray
     new 
+    @entries ||= entries
   end
 
   def index
-    File.open()
+    @entries
+  end
+
+  def entries
+    path = jot_filepath
+    Dir.entries(path).each do |entry|
+      if File.extname(entry) == '.markdown'
+        jot_title(entry)
+        file = File.open(path + "/" + entry)
+        formatted_line(file)
+      end
+    end
+  end
+
+
+  def formatted_line(file)
+    file.each do |line|
+      if line.include?('#')
+        hash_index = line.index('#')
+        print line[0..hash_index].chop
+        hashes = line.scan(/#\w*/)
+        hashes.map { |hash| print " " + hash.cyan }
+        print "\n"
+      else
+        puts line.chop
+      end
+    end
+  end
+
+  def jot_title(entry)
+    print "\n"
+    basename = entry.split('.')[0]
+    puts basename
+    basename.length.times do
+      print '-'
+    end
+    print '-'
+    print "\n"
   end
 
   def new
-    print '> '.red
+    print '=> '.red
     input = gets.chomp
-    if input =~ /search/ || input =~ /menu/
-      menu
-    elsif input == 'quit'
-      exit
-    else
-      create(input)
+    case input.downcase
+      when 'm' || 'menu'  then menu
+      when 'i' || 'index' then index
+      else create(input)
     end
   end
 
   def create(input)
-    jots = File.join(Dir.home, 'Dropbox', 'jots')
-    File.open("#{jots}/#{Time.now.strftime("%F")}.markdown", 'a+') do |jot|
+    File.open("#{jot_filepath}/#{Time.now.strftime("%F")}.markdown", 'a+') do |jot|
       jot.write "\n"
       jot.write input
     end
@@ -35,9 +70,24 @@ class Jotter
   end
 
   def menu
-    puts '[D]elete [E]dit [S]earch'
+    commands = {
+      d: :delete,
+      m: :menu,
+      i: :index,
+      e: :edit,
+      s: :search
+    }
+    commands.map { |k,option| print option.to_s + " " }
+    print "\n"
+    print '(menu) '.red
     input = gets.chomp
     send(input)   
+  end
+ 
+private
+
+  def jot_filepath
+    @filepath ||= File.join(Dir.home, 'Dropbox', 'jots')
   end
 end
 

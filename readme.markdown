@@ -1,5 +1,5 @@
-# Jots
-consider jots as personal tweets. Thoughts tasks, or whatever you want to quickly jot down in the moment.
+# Jot
+Jot thoughts, tasks, tweets, or whatever you want to quickly jot down in the moment.  
 
 ## Getting started
 
@@ -14,7 +14,6 @@ so, to start the file, simply type
 This will allow you to type things as they come.
 
 ## TODO
-- list jots
 - search jots
 - sort by hash tag
 - add a date flag
@@ -23,7 +22,7 @@ This will allow you to type things as they come.
 - build rake tasks for reports
 - create markdown headers per month
 - create a jot title flag as an argument 'jot -friday'
-- index action lists file names to review for jotting?
+- add some tests
 
 ## report types
 - total jots
