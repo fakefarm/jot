@@ -24,6 +24,11 @@ This will allow you to type things as they come.
 - create a jot title flag as an argument 'jot -friday'
 - add some tests
 
+### Types of listing
+- list out file name
+- list out file contents
+- list out specific file
+
 ## report types
 - total jots
 - sorted by tag

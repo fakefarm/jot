@@ -1,16 +1,19 @@
-#!/usr/bin/env ruby 
+#!/usr/bin/env ruby -w
 
 require './string_util'
+require './menu'
+
 class Jotter
 
-  def initialize
+  def initialize(title)
+    @title = title
+    require 'pry'; binding.pry
     puts 'Jot a note...'.gray
     new 
-    @entries ||= entries
   end
-
+  
   def index
-    @entries
+    @entries ||= entries
   end
 
   def entries
@@ -24,19 +27,42 @@ class Jotter
     end
   end
 
-
   def formatted_line(file)
     file.each do |line|
-      if line.include?('#')
-        hash_index = line.index('#')
-        print line[0..hash_index].chop
-        hashes = line.scan(/#\w*/)
-        hashes.map { |hash| print " " + hash.cyan }
-        print "\n"
-      else
-        puts line.chop
-      end
+      line_style(line)
     end
+  end
+  
+  def line_style
+    line = @input
+    if line.include?('#')
+      hash_index = line.index('#')
+      print line[0..hash_index].chop
+      hashes = line.scan(/#\w*/)
+      hashes.map { |hash| print " " + hash.cyan }
+      print "\n"
+    else
+      puts line.chomp
+    end
+  end
+
+  def new
+    print '=> '.red
+    @input = gets.chomp
+    filter_entry
+  end
+
+  def create
+    save
+    line_style 
+    menu
+    new
+  end
+
+private
+
+  def title?
+    true if ARGV.size > 0
   end
 
   def jot_title(entry)
@@ -50,45 +76,35 @@ class Jotter
     print "\n"
   end
 
-  def new
-    print '=> '.red
-    input = gets.chomp
-    case input.downcase
-      when 'm' || 'menu'  then menu
-      when 'i' || 'index' then index
-      else create(input)
+  def save
+    unless title?
+      File.open("#{jot_filepath}/#{Time.now.strftime("%F")}.markdown", 'a+') do |jot|
+        jot.write "\n"
+        jot.write @input
+      end
+    else
+      File.open("#{jot_filepath}/#{title}.markdown", 'a+') do |jot|
+        jot.write "\n"
+        jot.write @input
+      end
+    end
+  end 
+
+  def filter_entry
+    case @input.downcase
+      when 'm' then menu
+      when 'i' then index
+      else create
     end
   end
-
-  def create(input)
-    File.open("#{jot_filepath}/#{Time.now.strftime("%F")}.markdown", 'a+') do |jot|
-      jot.write "\n"
-      jot.write input
-    end
-    puts 'Saved. Jot another or [M]enu'
-    new
-  end
-
-  def menu
-    commands = {
-      d: :delete,
-      m: :menu,
-      i: :index,
-      e: :edit,
-      s: :search
-    }
-    commands.map { |k,option| print option.to_s + " " }
-    print "\n"
-    print '(menu) '.red
-    input = gets.chomp
-    send(input)   
-  end
- 
-private
 
   def jot_filepath
     @filepath ||= File.join(Dir.home, 'Dropbox', 'jots')
   end
+
+  def menu
+    @menu ||= Menu.new.main
+  end
 end
 
-Jotter.new
+Jotter.new(ARGV[0])
