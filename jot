@@ -7,7 +7,6 @@ class Jotter
 
   def initialize(title)
     @title = title
-    require 'pry'; binding.pry
     puts 'Jot a note...'.gray
     new 
   end
