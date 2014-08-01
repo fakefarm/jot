@@ -6,6 +6,7 @@ require './menu'
 class Jotter
 
   def initialize(title)
+    require 'pry'; binding.pry
     @title = title
     puts 'Jot a note...'.gray
     new 
