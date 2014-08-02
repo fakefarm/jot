@@ -1,4 +1,4 @@
-require './settings'
+require './lib/settings'
 
 class Init
   attr_reader :jot_directory

@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './jot'
+require './lib/jot'
 
 RSpec.describe Jot do
 

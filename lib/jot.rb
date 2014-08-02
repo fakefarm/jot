@@ -1,7 +1,7 @@
 # #!/usr/bin/env ruby -w
 
-require './string_util'
-require './menu'
+require './lib/string_util'
+require './lib/menu'
 
 class Jot
 

@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './string_util'
+require './lib/string_util'
 
 RSpec.describe String do
  describe 'iterm colors' do
