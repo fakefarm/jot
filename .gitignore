@@ -2,4 +2,6 @@ vendor
 .bundle
 *.swp
 *.swo
+*.rb.swo
+*.rb.swp
 
