@@ -3,6 +3,22 @@ require './jot'
 
 RSpec.describe Jot do
 
+  describe 'temporary tests' do
+    it 'can be created' do
+      jot = Jot.new('this is my jot')
+      expect(jot).to 
+      # 8/2/14
+      # my current use of jot is more terminal, but doesn't test well.
+      # Thinking that I'm going to create an init.rb that will do some setup.
+      # init.rb
+      # checks if there's a booi.yml in config directory.
+      # config/boot.yml will tell the program;
+      # that we are a new / existing app
+      # where to store jots
+      # is it a yaml file?
+    end
+  end
+
   describe 'saving' do
     it 'creates a new jot file per day'
     it 'defaults to a date header in new logs'
