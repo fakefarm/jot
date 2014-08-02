@@ -13,23 +13,14 @@ so, to start the file, simply type
 
 This will allow you to type things as they come.
 
-## TODO
-- search jots
-- sort by hash tag
-- add a date flag
-- on quit, send user back to directory they came from
-- execute without need of ./
-- build rake tasks for reports
-- create markdown headers per month
-- create a jot title flag as an argument 'jot -friday'
-- add some tests
+## Wishlist
 
-### Types of listing
+### Types of listing (requested)
 - list out file name
 - list out file contents
 - list out specific file
 
-## report types
+### report types
 - total jots
 - sorted by tag
 - single page view

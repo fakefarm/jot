@@ -1,12 +1,11 @@
-#!/usr/bin/env ruby -w
+# #!/usr/bin/env ruby -w
 
 require './string_util'
 require './menu'
 
-class Jotter
+class Jot
 
   def initialize(title)
-    require 'pry'; binding.pry
     @title = title
     puts 'Jot a note...'.gray
     new 
@@ -106,5 +105,3 @@ private
     @menu ||= Menu.new.main
   end
 end
-
-Jotter.new(ARGV[0])
