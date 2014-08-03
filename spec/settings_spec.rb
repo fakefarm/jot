@@ -2,7 +2,18 @@ require 'spec_helper'
 require './lib/settings'
 
 RSpec.describe Settings do
-  it 'checks the configs' 
   it 'if jot is new, it will initiate a setup wizard'
-  it 'if jot is old, it will use the established settings from setup wizard'
+  it 'locates directory for storage' do
+    settings = Settings.new
+    #TODO 
+    # Is it okay if I mockout the private methods from the object under test?
+    allow(settings).to receive(:boot_file_save_location).and_return('/Desktop')
+    expect(settings.save_location).to eq('/Desktop')
+  end
+
+  it 'shows single or multiple file preference' do
+    settings = Settings.new
+    allow(settings).to receive(:boot_file_storage).and_return('multiple')
+    expect(settings.file_storage).to eq('multiple')
+  end
 end

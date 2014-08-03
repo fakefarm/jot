@@ -8,7 +8,7 @@ class SetupWizard
 
   def file_management
     puts "Do you want jots in a single or multiple files?"
-    puts "Respond with: single or multiple"
+    puts "Respond with: 'single' or 'multiple'"
     user_input
   end
 
