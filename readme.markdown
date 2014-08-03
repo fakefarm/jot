@@ -1,26 +1,11 @@
 # Jot
 Jot thoughts, tasks, tweets, or whatever you want to quickly jot down in the moment.  
 
-## Getting started
-
-- Clone the repo
-
-## Usage
-This is a ruby file with some bash executable magic (for us newbies)
-so, to start the file, simply type
-
-    $ ./jot
-
-This will allow you to type things as they come.
-
-## Wishlist
-
-### Types of listing (requested)
-- list out file name
-- list out file contents
-- list out specific file
-
-### report types
-- total jots
-- sorted by tag
-- single page view
+### TODO figure out how to stub methods AND stub #gets
+_8/2/14_
+I cannot figure out how to stub.
+Once I do, i want to stub out the #gets method for terminal input.
+How the heck do i do that?!
+I'm going to put a fake_input_data method until I figure it out.
+    setup = SetupWizard.new
+    setup.stub('take input').and_return #=> says stub method not found
