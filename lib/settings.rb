@@ -1,20 +1,28 @@
 require 'yaml'
-require './lib/setup_wizard'
+require './setup_wizard'
 
 class Settings
   attr_accessor :boot_file
 
   def initialize
-    @boot_file = YAML.load_file('config/boot.yml')
-    run_setup_wizard?
+    if File.exists?('../config/boot.yaml')
+      @boot_file = YAML.load_file('../config/boot.yml')
+    else
+      setup_wizard
+    end
   end
 
-  def save_location
-    boot_file_save_location
+  def save_location # this method acts as public api to ensure clarity of class
+    boot_file_save_location # the actual implementation details are tucked in private
   end
 
   def file_storage
     boot_file_storage
+  end
+
+  def update_file_location(location)
+    boot_file['settings']['save_location'] = location
+    File.open('../config/boot.yml', 'w') { |f| f.write boot_file.to_yaml }
   end
 
 private
@@ -27,19 +35,8 @@ private
     boot_file['settings']['file_storage']
   end
 
-  def new_account?
-    status == 'new'
-  end
-
-  def run_setup_wizard?
-    setup_wizard if new_account?
-  end
-
   def setup_wizard
-    wizard = SetupWizard.new
-    #TODO - write these answers to boot.yml
-    @location = wizard.save_location
-    @files = wizard.file_management
+    SetupWizard.new
   end 
 
   def status

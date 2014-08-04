@@ -4,4 +4,4 @@ vendor
 *.swo
 *.rb.swo
 *.rb.swp
-
+.DS_Store

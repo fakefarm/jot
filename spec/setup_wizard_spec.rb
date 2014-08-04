@@ -13,4 +13,6 @@ RSpec.describe SetupWizard do
     allow(setup).to receive(:user_input).and_return('multiple')
     expect(setup.file_management).to eq('multiple')
   end
+
+  it 'creates a new boot.yaml for new apps'
 end

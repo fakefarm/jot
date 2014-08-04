@@ -16,4 +16,11 @@ RSpec.describe Settings do
     allow(settings).to receive(:boot_file_storage).and_return('multiple')
     expect(settings.file_storage).to eq('multiple')
   end
+
+  it 'can update file_location' do
+    settings = Settings.new
+    # TODO how do I mock out fake test yml file?
+    settings.update_file_location = '/Dropbox'
+    expect(settings.save_location).to be('/Dropbox')
+  end
 end

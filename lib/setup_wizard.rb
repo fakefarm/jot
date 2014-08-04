@@ -1,3 +1,5 @@
+require 'yaml'
+
 class SetupWizard
 
   def save_location
@@ -10,6 +12,13 @@ class SetupWizard
     puts "Do you want jots in a single or multiple files?"
     puts "Respond with: 'single' or 'multiple'"
     user_input
+  end
+  
+  def create_boot_file
+    yaml = {settings: {}}
+    yaml[:settings][:status] = 'new'
+    yaml[:settings][:save_location] = '/foo'
+    File.open('../config/foo.yaml', 'w') { |f| f.write yaml.to_yaml }
   end
 
 private
