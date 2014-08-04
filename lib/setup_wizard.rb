@@ -1,6 +1,10 @@
 require 'yaml'
 
 class SetupWizard
+  
+  def initialize 
+    create_boot_file
+  end
 
   def save_location
     puts "Where do you want to store jots?"
@@ -18,7 +22,7 @@ class SetupWizard
     yaml = {settings: {}}
     yaml[:settings][:status] = 'new'
     yaml[:settings][:save_location] = '/foo'
-    File.open('../config/foo.yaml', 'w') { |f| f.write yaml.to_yaml }
+    File.open('../config/boot.yaml', 'w+') { |f| f.write yaml.to_yaml }
   end
 
 private

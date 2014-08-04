@@ -14,5 +14,8 @@ RSpec.describe SetupWizard do
     expect(setup.file_management).to eq('multiple')
   end
 
-  it 'creates a new boot.yaml for new apps'
+  it 'creates a new boot.yaml for new apps' do
+    setup = SetupWizard.new
+    expect(File.exist?('../config/boot.yml')).to be true
+  end
 end

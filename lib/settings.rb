@@ -1,5 +1,5 @@
 require 'yaml'
-require './setup_wizard'
+require 'setup_wizard'
 
 class Settings
   attr_accessor :boot_file

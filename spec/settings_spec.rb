@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/settings'
+require 'settings'
 
 RSpec.describe Settings do
   it 'if jot is new, it will initiate a setup wizard'
