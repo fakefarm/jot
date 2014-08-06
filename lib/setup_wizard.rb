@@ -4,6 +4,7 @@ require 'fileutils'
 class SetupWizard
   
   def initialize 
+    save_location
     file_quantity
     create_boot_file
   end
