@@ -1,12 +1,16 @@
 require 'spec_helper'
-require './lib/jot'
+require './jot'
 
+# TODO how do I test a ruby executable?
 RSpec.describe Jot do
+
+  it 'initializes the app' do
+    jot = Jot.new
+    expect(jot.loaded?).to be true
+  end
 
   describe 'temporary tests' do
     it 'can be created' do
-      jot = Jot.new('this is my jot')
-      expect(jot).to 
       # 8/2/14
       # my current use of jot is more terminal, but doesn't test well.
       # Thinking that I'm going to create an init.rb that will do some setup.
