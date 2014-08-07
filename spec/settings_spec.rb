@@ -2,7 +2,18 @@ require 'spec_helper'
 require 'settings'
 
 RSpec.describe Settings do
-  it 'if jot is new, it will initiate a setup wizard'
+  it 'if jot is new, it will initiate a setup wizard' do
+    settings = Settings.new
+    allow(settings).to receive(setup_wizard).and_return('')
+    expect(settings.new_account?).to eq true
+  end
+
+  it 'if existing jot, it will not initiate setup wizard' do
+    settings = Settings.new
+    allow(settings).to receive(:new_account?).and_return false
+    expect(settings.setup_wizard).not.to have_been_called
+  end
+
   it 'locates directory for storage' do
     settings = Settings.new
     #TODO 
@@ -17,7 +28,7 @@ RSpec.describe Settings do
     expect(settings.file_storage).to eq('multiple')
   end
 
-  it 'can update file_location' do
+  xit 'can update file_location' do
     settings = Settings.new
     # TODO how do I mock out fake test yml file?
     settings.update_file_location = '/Dropbox'

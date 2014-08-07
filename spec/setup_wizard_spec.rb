@@ -4,8 +4,6 @@ require './lib/setup_wizard'
 RSpec.describe SetupWizard do
   after(:example) do
     File.delete('./config/boot.yaml') 
-    #FileUtils::rm_rf()
-    # require 'pry'; binding.pry
   end
 
   xit 'sets up the jot directory path' do

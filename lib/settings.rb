@@ -5,27 +5,30 @@ class Settings
   attr_accessor :boot_file
 
   def initialize
-    if File.exists?('../config/boot.yaml')
-      @boot_file = YAML.load_file('../config/boot.yml')
-    else
-      setup_wizard
-    end
+    load_boot_file
   end
 
-  def save_location # this method acts as public api to ensure clarity of class
-    boot_file_save_location # the actual implementation details are tucked in private
+  def save_location 
+    boot_file_save_location 
   end
 
   def file_storage
     boot_file_storage
   end
 
-  def update_file_location(location)
-    boot_file['settings']['save_location'] = location
-    File.open('../config/boot.yml', 'w') { |f| f.write boot_file.to_yaml }
-  end
-
 private
+
+  def new_account?
+    File.exists?('../config/boot.yaml')
+  end
+  
+  def load_boot_file
+    if new_account?
+      @boot_file = YAML.load_file('../config/boot.yaml')
+    else
+      setup_wizard
+    end
+  end
 
   def boot_file_save_location
     boot_file['settings']['save_location']

@@ -27,7 +27,7 @@ class SetupWizard
     yaml = {settings: {}}
     yaml[:settings][:save_location] = @location 
     yaml[:settings][:file_quantity] = @quantity
-    File.open('./config/boot.yaml', 'w') { |f| f.write yaml.to_yaml }
+    File.open('../config/boot.yaml', 'w') { |f| f.write yaml.to_yaml }
   end
 
 private
