@@ -5,3 +5,4 @@ vendor
 *.rb.swo
 *.rb.swp
 .DS_Store
+jots/*
