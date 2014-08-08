@@ -1,4 +1,3 @@
-require_relative 'write'
 require_relative 'controller'
 
 class Application

@@ -18,7 +18,7 @@ class Write
 private
 
   def file
-    '.' + settings.directory + settings.file_name
+    settings.directory + settings.file_name
   end
 
 end

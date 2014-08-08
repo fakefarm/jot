@@ -8,13 +8,17 @@ class Settings
   end
 
   def file_name
-    "/" + Time.now.strftime("%F") + ".md"
+    file_formatted
   end
 
 private
 
+  def file_formatted
+    Time.now.strftime("%F") + ".markdown"
+  end
+
   def get_settings_file
-    '/jots'
+    ENV['HOME'] + "/Dropbox/jots/"
   end
 
 #   attr_accessor :boot_file
