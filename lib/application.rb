@@ -1,7 +1,20 @@
-require 'settings'
+require_relative 'write'
 
 class Application
-  def settings_file
-    Settings.new.directory
+  attr_reader :menu, :settings
+
+  def initialize
+    prompt
   end
+
+  def prompt
+    print '=> '
+    jot = gets.chomp
+    write jot
+  end
+
+  def write jot
+    j = Write.new jot
+    j.save
+  end 
 end

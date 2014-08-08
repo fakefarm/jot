@@ -1,5 +1,5 @@
 require 'yaml'
-require 'setup_wizard'
+# require_relative 'setup_wizard'
 
 class Settings
 
@@ -7,10 +7,14 @@ class Settings
     get_settings_file
   end
 
+  def file_name
+    "/" + Time.now.strftime("%F") + ".md"
+  end
+
 private
 
   def get_settings_file
-    '/Dropbox/jots'
+    '/jots'
   end
 
 #   attr_accessor :boot_file
