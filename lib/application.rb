@@ -1,5 +1,5 @@
 require_relative 'write'
-require_relative 'menu'
+require_relative 'controller'
 
 class Application
   attr_reader :input
@@ -18,7 +18,7 @@ private
   def run
     until input == 'quit'
       prompt
-      Menu.new input
+      Controller.new input
     end
   end
 end
