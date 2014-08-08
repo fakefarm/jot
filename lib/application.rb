@@ -1,20 +1,24 @@
 require_relative 'write'
+require_relative 'menu'
 
 class Application
-  attr_reader :menu, :settings
+  attr_reader :input
 
   def initialize
-    prompt
+    run
   end
+
+private
 
   def prompt
     print '=> '
-    jot = gets.chomp
-    write jot
+    @input = gets.chomp
   end
 
-  def write jot
-    j = Write.new jot
-    j.save
-  end 
+  def run
+    until input == 'quit'
+      prompt
+      Menu.new input
+    end
+  end
 end
